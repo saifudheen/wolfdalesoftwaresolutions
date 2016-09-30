@@ -2,16 +2,23 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 
+
+var http = require('http');
+
 var app = express();
-app.use(morgan('combined'));
 
-app.all('/*',function(req,res,next){
-  res.sendfile('client/index.html',{route: __dirname });
+app.configure(function() {
+    app.set('port', process.env.PORT || 3333)
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+
+    app.use(app.router);
+    app.use(express.static(__dirname + "/client"));
 });
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'index.html'));
-// });
 
+http.createServer(app).listen(app.get('port'), function() {
+    console.log("Express server listening on port " + app.get('port'));
+});
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
