@@ -1,26 +1,24 @@
 var express = require('express');
+var morgan = require('morgan');
 var path = require('path');
-var index = require('./routes/index');
-var tweets = require('./routes/tweets');
+
 var app = express();
+app.use(morgan('combined'));
 
-// serve static assets from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
 
-// look for view html in the views directory
-app.set('views', path.join(__dirname, 'views'));
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+});
 
-// use ejs to render 
-app.set('view engine', 'ejs');
-
-// setup routes
-app.use('/', index);
-app.use('/tweets', tweets);
+app.get('/ui/madi.png', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
 
 
-module.exports = app;
-
-var port = process.env.PORT || 8080;
-app.listen(port, function() {
-  console.log('Listening on ' + port);
+var port = 8080; // Use 8080 for local development because you might already have apache running on 80
+app.listen(8080, function () {
+  console.log(`IMAD course app listening on port ${port}!`);
 });

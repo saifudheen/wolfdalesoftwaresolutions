@@ -1,18 +1,15 @@
 {
-  "name": "sample-angular-node",
-  "version": "0.0.1",
-  "private": true,
+  "name": "imad-2016-base",
+  "version": "0.1.0",
+  "description": "IMAD 2016 course app",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "ejs": "~0.8.5",
-    "express": "~4.2.0",
-    "qs": "*",
-    "twit": "^1.1.18"
-  },
-  "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
   }
 }
