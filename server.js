@@ -1,6 +1,8 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
+var async = require('async');
+var nodemailer = require('nodemailer');
 
 var app = express();
 app.use(morgan('combined'));
