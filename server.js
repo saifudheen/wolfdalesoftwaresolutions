@@ -26,7 +26,7 @@ var transporter;
 
 
 app.use(express.static(path.join(__dirname, 'client')));
-//app.use(express.favicon());
+app.use(express.favicon());
 app.set('port', process.env.PORT || 8080);
 app.use(express.logger('dev'));
 app.use(express.json());
