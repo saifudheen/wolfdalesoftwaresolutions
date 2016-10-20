@@ -7,9 +7,9 @@
 /*
  * Load all the required modules 
 */
-var express = require('express'),
-    path = require('path'),
-    fs= require('fs');
+var express = require('express');
+var  path = require('path');
+var fs= require('fs');
 var app = express();
 var async = require("async");
 var http = require("http");
@@ -26,8 +26,8 @@ var transporter;
 
 
 app.use(express.static(path.join(__dirname, 'client')));
-app.use(express.favicon());
-app.set('port', process.env.PORT || 1010);
+//app.use(express.favicon());
+app.set('port', process.env.PORT || 8080);
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
