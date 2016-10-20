@@ -1,0 +1,8 @@
+<div data-ng-controller="userController" >
+   <div data-ng-if="loginedUserData!=undefined">
+       <div data-ng-include="'pages/menu.html'"></div>
+   </div>
+    <div data-ng-if="loginedUserData==undefined">
+        <div data-ng-include="'pages/login.html'"></div>
+    </div>
+</div>

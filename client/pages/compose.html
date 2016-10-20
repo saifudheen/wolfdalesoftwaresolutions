@@ -1,0 +1,135 @@
+<div data-ng-controller="composeController">
+    <div class="row" style="margin-top: 20px">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Compose Email</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" data-ng-submit="sendMail(mailData)">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label >Add Recipient</label>
+                            </div>
+                            <div class="col-sm-9 ">
+                                <div class="input-group input-group-lg">
+                                <input class="form-control" data-ng-model="Recipient"  type="text">
+                                <!--<button type="button" data-ng-click="addRecipient(Recipient);" class="btn btn-success">add</button>-->
+                                <span class="input-group-addon" style="cursor: pointer" data-ng-click="addRecipient(Recipient);" >
+                                    <span >add</span>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label >Subject</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <!--<input class="form-control" placeholder="Min length 2, Max length 30" data-ng-model="user.name" required="" data-ng-minlength="2" data-ng-maxlength="30" type="text">-->
+                                <input type="text" class="form-control" data-ng-model="mailData.subject" rows="2">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label >Message</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <!--<input class="form-control" placeholder="Min length 2, Max length 30" data-ng-model="user.name" required="" data-ng-minlength="2" data-ng-maxlength="30" type="text">-->
+                                <textarea class="form-control" data-ng-model="mailData.content" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label >Choose Template</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <select class="form-control" ng-change="templateChanged(mailData.template)" data-ng-model="mailData.template" >
+                                    <option ng-repeat="data in templateData" value="{{$index}}">{{data.name}}</option>
+                                    <option value="-1">NoTemplate</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label >Content</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" data-ng-model="mailData.body" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <button type="button" data-ng-click="viewPreview();" class="btn btn-success">Preview</button>
+                            <button type="submit" class="btn btn-success">Send</button>
+                            <button type="reset" class="btn btn-rss">Clear</button>
+                        </div>
+                    </form>
+
+                    <div style="padding-top: 50px"></div>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-sm-offset-1 col-md-10 col-sm-10">
+
+                            <div class="table-responsive" >
+                                <table class="table table-bordered ">
+                                    <tr style="background-color: #2498BA;color: #ffffff">
+                                        <th class="text-center">
+                                            <div class="th">
+                                               Recipient List
+                                            </div>
+                                        </th>
+                                        <th class="text-center">
+                                            <div class="th" >
+                                                <span class="fa fa-edit"></span>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr  ng-repeat="row in mailData.recipients"  >
+                                        <td >{{row}}<span ng-repeat="data in failure_email" ng-if="data==row" style="color: red">       failed</span></td>
+                                        <!--<td data-ng-if="failure_email[row]==row" style="color: red">{{row}}</td>-->
+
+                                        <td class="text-center">
+                                            <span class="logohover fa fa-trash-o" data-ng-click="deleteRecipient(row,$index);"></span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="preview" class="modal modal-fullscreen " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div>
+                    <div class="modal-header">
+                        <span class="fa fa-close ash-c pull-right mouse_point" data-dismiss="modal" aria-hidden="true"></span>
+
+                        <h4 class="modal-title text-center" style="color: green">Preview !</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="panel-body panel">
+
+                            <div class="row">
+
+                                        <iframe width="100%" height="900" style="border-width: 0px;" id="iframeid" >
+
+                                        </iframe>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

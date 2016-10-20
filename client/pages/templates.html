@@ -1,0 +1,36 @@
+<div data-ng-controller="templateController">
+    <div class="row" style="margin-top: 20px">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Manage Templates</h3>
+                </div>
+                <div class="panel-body">
+                    <div style="padding-top: 50px"></div>
+                    <div class="masthead">
+                        <!--<h3 class="text-muted">Project name</h3>-->
+                        <div role="navigation">
+                            <ul class="nav nav-justified">
+                                <li  data-ng-repeat="data in templateData" class="{{activeTemplate[$index]}}"><a href="#" data-ng-click="setTemplate($index)">{{data.name}}</a></li>
+                                <li  class="{{activeTemplate[templateData.length]}}"><a href="#" data-ng-click="setTemplate(templateData.length)">add New</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-sm-offset-1 col-md-10 col-sm-10">
+
+                            <iframe ng-if="selectedTemplate!=templateData.length" width="100%" height="900" style="border-width: 0px;" id="iframe" >
+
+                            </iframe>
+                                <div ng-if="selectedTemplate==templateData.length">add new template goes here...</div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

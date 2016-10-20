@@ -2,7 +2,7 @@
   "name": "imad-2016-base",
   "version": "0.1.0",
   "description": "IMAD 2016 course app",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

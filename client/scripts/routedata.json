@@ -1,0 +1,14 @@
+{
+    "records": [
+
+        {
+            "KeyName": "/compose",
+            "PageUrls": "pages/compose.html",
+            "Controller": ""
+        },{
+            "KeyName": "/",
+            "PageUrls": "pages/landing.html",
+            "Controller": ""
+        }
+        ]
+}
